@@ -10,7 +10,7 @@ public class Execution {
 	String status;
 	String description;
 	Execution(){}
-	Execution(int exeId, Date timeWhen, String status, String description){
+	public Execution(int exeId, Date timeWhen, String status, String description){
 		this.exeId = exeId;
 		this.timeWhen = timeWhen;
 		this.status = status;

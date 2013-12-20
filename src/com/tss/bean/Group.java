@@ -12,7 +12,7 @@ public class Group {
 	String statusColor;
 	List<Task> taskList;
 	Group(){}
-	Group(int groupId, String groupName, Date lastTimeChanged){
+	public Group(int groupId, String groupName, Date lastTimeChanged){
 		this.groupId = groupId;
 		this.groupName = groupName;
 		this.lastTimeChanged = lastTimeChanged;

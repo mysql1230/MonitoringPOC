@@ -5,6 +5,7 @@ import java.net.URL;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
+import com.tss.api.JenkinsAPI;
 import com.tss.bean.RootNode;
 
 
@@ -14,12 +15,12 @@ public class DataHelper {
 	private static void loadBeans(){
 		try{
 			//File file = new File("D:\\file.xml");
-			URL url = new URL("http://techsharksolutions.com/file.xml");
-			JAXBContext jaxbContext = JAXBContext.newInstance(RootNode.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			RootNode rootNode = (RootNode) jaxbUnmarshaller.unmarshal(url);
+//			URL url = new URL("http://techsharksolutions.com/file.xml");
+//			JAXBContext jaxbContext = JAXBContext.newInstance(RootNode.class);
+//			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+//			RootNode rootNode = (RootNode) jaxbUnmarshaller.unmarshal(url);
+			RootNode rootNode = JenkinsAPI.fillRootNode();
 			DataHelper.setRootNode(rootNode);
-			System.out.println(rootNode.getCityList().get(1).getGroupList().get(1).getGroupName());
 		}catch (Exception e){
 			e.printStackTrace();
 		}

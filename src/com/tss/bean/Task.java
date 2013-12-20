@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Task {
 	Task(){}
-	Task(int taskID, String taskName, String status, String description){
+	public Task(int taskID, String taskName, String status, String description){
 		this.taskId = taskID;
 		this.taskName = taskName;
 		this.status = status;

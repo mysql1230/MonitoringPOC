@@ -80,7 +80,7 @@ public class APIRequest extends HttpServlet {
 			for(int i=0;i<totalCity;i++ ){
 				taskList = null;
 				city = cityList.get(i);
-				listGroupMatrix[0][i]=city.getCityName();;
+				listGroupMatrix[0][i]=city.getCityName();
 				groupList = city.getGroupList();
 				taskStatus="";
 				taskColor="";

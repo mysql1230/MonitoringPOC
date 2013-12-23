@@ -14,12 +14,11 @@ public class DataHelper {
 	private static String listGroups;
 	private static void loadBeans(){
 		try{
-			//File file = new File("D:\\file.xml");
+			File file = new File("D:\\file.xml");
 //			URL url = new URL("http://techsharksolutions.com/file.xml");
-//			JAXBContext jaxbContext = JAXBContext.newInstance(RootNode.class);
-//			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-//			RootNode rootNode = (RootNode) jaxbUnmarshaller.unmarshal(url);
-			RootNode rootNode = JenkinsAPI.fillRootNode();
+			JAXBContext jaxbContext = JAXBContext.newInstance(RootNode.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			RootNode rootNode = (RootNode) jaxbUnmarshaller.unmarshal(file);
 			DataHelper.setRootNode(rootNode);
 		}catch (Exception e){
 			e.printStackTrace();

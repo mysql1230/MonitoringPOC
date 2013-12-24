@@ -8,18 +8,18 @@ import java.io.PrintWriter;
 public class JenkinsJob {
 
 	public static void main(String[] args) {
-		String jenkinsURL = "http://localhost:8080";
-		String jobName = "test";
-		String newJobName = "copiedJob";
+		String jenkinsURL = "http://79.98.31.205:8080";
+		String jobName = "Test1";
+		String newJobName = "Test1CopiedJob";
 		
 		/*
 		 * The API token is available in your personal configuration page. 
 		 * Click your name on the top right corner on every page, then click "Configure" to see your API token. (The URL $root/me/configure is a good shortcut.) 
 		 * You can also change your API token from here.
 		 */
-		String token = "8f984e03c543c053ca9c40702facd6e9";
-		String username = "test";
-		copyJob(jenkinsURL,jobName,newJobName,username,token);
+		String token = "fb4e6f3256e493cd98c1476cebbf4e87";
+		String username = "jenkins1";
+		String result = copyJob(jenkinsURL,jobName,newJobName,username,token);
 	}
 	
 	public static String copyJob(String jenkinsURL, String jobName, String newJobName) { 
@@ -57,6 +57,9 @@ public class JenkinsJob {
             while ((line = in.readLine()) != null) {  
                 result += line;  
             }  
+            if (httpConn.getResponseCode() != 200 && httpConn.getResponseCode() != 403){
+            	throw new Exception("Copy Job Failed: " + result);
+            }
         } catch (Exception e) {  
             e.printStackTrace();  
         } finally {  

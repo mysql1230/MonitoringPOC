@@ -36,17 +36,17 @@ import com.tss.bean.Task;
 public class JenkinsAPI {
 
 	public static void main(String[] args) throws IOException, JAXBException {
-		String jenkinsURL = "http://localhost:8080";
+		String jenkinsURL = "http://79.98.31.205:8080";
 		String jobXMLFileName = "D:\\file.xml";
 		
 		//Jenkins login username
-		String username = "test";
+		String username = "jenkins1";
 		/*
 		 * The API token is available in your personal configuration page. 
 		 * Click your name on the top right corner on every page, then click "Configure" to see your API token. (The URL $root/me/configure is a good shortcut.) 
 		 * You can also change your API token from here.
 		 */
-		String token = "8f984e03c543c053ca9c40702facd6e9";
+		String token = "fb4e6f3256e493cd98c1476cebbf4e87";
 		
 		generateJobsXML(jenkinsURL,jobXMLFileName,username,token);
 	}
@@ -162,6 +162,10 @@ public class JenkinsAPI {
               if (jobList != null){
 	              for (int j = 0 ; j < jobList.getLength(); j++) {
 	            	  Element job = (Element)jobList.item(j);
+	            	  // if downStream or upperStream job
+	            	  if (job.getElementsByTagName("building").getLength() == 0 ){
+	            		  continue;
+	            	  }
 	            	  String exeId = job.getElementsByTagName("number").item(0).getTextContent();
 	            	  
 	            	  String building = job.getElementsByTagName("building").item(0).getTextContent();
@@ -182,7 +186,7 @@ public class JenkinsAPI {
 	            	  
 	            	  Execution exe = new Execution(new Integer(exeId),timeWhen, buildStatus, buildDescription);
 	            	  exeList.add(exe);
-//	            	  System.out.println(exeId +"_" +buildStatus +"_" +timeWhen);
+//	            	  System.out.println(taskName+ "_" +exeId +"_" +buildStatus +"_" +timeWhen);
 	              }
               }
               task.setExeList(exeList);

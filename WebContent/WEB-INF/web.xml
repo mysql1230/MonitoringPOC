@@ -15,8 +15,19 @@
     <servlet-name>APIRequest</servlet-name>
     <servlet-class>com.tss.servlet.APIRequest</servlet-class>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>APIRequest</servlet-name>
     <url-pattern>/APIRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SauceRequest</display-name>
+    <servlet-name>SauceRequest</servlet-name>
+    <servlet-class>com.tss.servlet.SauceLabRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SauceRequest</servlet-name>
+    <url-pattern>/SauceRequest</url-pattern>
   </servlet-mapping>
 </web-app>

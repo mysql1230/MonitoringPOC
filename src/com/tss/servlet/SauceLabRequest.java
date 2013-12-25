@@ -22,8 +22,8 @@ public class SauceLabRequest extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "http://79.98.31.205:8080/job/Test1/21";
-//		String value = request.getParameter("url");
+//		String url = "http://79.98.31.205:8080/job/Test1/21";
+		String url = request.getParameter("url");
 		
 		url = url + "/parsed_console/log.html";
 		response.setHeader("Cache-Control", "no-cache");

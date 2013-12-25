@@ -217,7 +217,7 @@ public class APIRequest extends HttpServlet {
 			if(cityId!=0 && groupId!=0 && taskId!=0 && exeId!=0){
 				System.out.println("cityId-"+cityId+", groupId-"+groupId+", taskId-"+taskId+", exeId-"+exeId);
 				Execution exeBean = (Execution)getList(cityList, cityId, groupId, taskId, exeId);
-				sbResponse.append("<th>Description</th><th>DateTime</th><th>Status</th>");
+				sbResponse.append("<th>Description</th><th>DateTime</th><th>Status</th><th>Sauce</th>");
 				String exeStatus = null, exeColor = null;
 				if(exeBean.getStatus().equalsIgnoreCase("o")){
 					exeStatus="OK";
@@ -229,7 +229,7 @@ public class APIRequest extends HttpServlet {
 					exeStatus="Running";
 					exeColor="#FFBD26";
 				}
-				sbResponse.append("@<td bgcolor='"+exeColor+"'>"+exeBean.getDescription()+"</td><td bgcolor='"+exeColor+"'>"+exeBean.getTimeWhen()+"</td><td bgcolor='"+exeColor+"'>"+exeStatus+"</td>");
+				sbResponse.append("@<td bgcolor='"+exeColor+"'>"+exeBean.getDescription()+"</td><td bgcolor='"+exeColor+"'>"+exeBean.getTimeWhen()+"</td><td bgcolor='"+exeColor+"'>"+exeStatus+"</td><td bgcolor='"+exeColor+"'><a href=SauceRequest?url="+exeBean.getUrl()+" >log</a></td>");
 				DataHelper.setListGroups(""+sbResponse);
 			}
 			response.sendRedirect("listexecutiondetail.jsp");

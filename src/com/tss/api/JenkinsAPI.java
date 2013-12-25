@@ -166,13 +166,22 @@ public class JenkinsAPI {
 	            	  if (job.getElementsByTagName("building").getLength() == 0 ){
 	            		  continue;
 	            	  }
+	            	  
+	            	  String buildStatus = "";
+	            	  String buildDescription = "";
+	            	  
 	            	  String exeId = job.getElementsByTagName("number").item(0).getTextContent();
-	            	  
 	            	  String building = job.getElementsByTagName("building").item(0).getTextContent();
-	            	  String buildDescription = building.equals("false")? "All Execution Done" : "Building";
+	            	  if (building.equals("true")){
+	            		  buildStatus = "r";
+	            		  buildDescription = "Building";
+	            	  }else{
+	            		  String result = job.getElementsByTagName("result").item(0).getTextContent();
+	            		  buildStatus = result.equals("FAILURE")? "f" : "o";
+	            		  buildDescription = "All Execution Done";
+	            	  }
 	            	  
-	            	  String result = job.getElementsByTagName("result").item(0).getTextContent();
-	            	  String buildStatus = result.equals("FAILURE")? "f" : "o";
+	            	  String buildUrl = job.getElementsByTagName("url").item(0).getTextContent();
 	            	  
 	            	  String id = job.getElementsByTagName("id").item(0).getTextContent();
 	            	  Date timeWhen;
@@ -184,13 +193,15 @@ public class JenkinsAPI {
 	                	  System.out.println(pe.getMessage());
 	                  }  
 	            	  
-	            	  Execution exe = new Execution(new Integer(exeId),timeWhen, buildStatus, buildDescription);
+	            	  Execution exe = new Execution(new Integer(exeId),timeWhen, buildStatus, buildDescription, buildUrl);
 	            	  exeList.add(exe);
 //	            	  System.out.println(taskName+ "_" +exeId +"_" +buildStatus +"_" +timeWhen);
 	              }
               }
-              task.setExeList(exeList);
-              taskList.add(task);
+              if(exeList.size() >0){
+            	  task.setExeList(exeList);
+            	  taskList.add(task);
+              }
            } 
         }
         
